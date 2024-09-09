@@ -22,5 +22,20 @@
   ```bash
   python numeric.py 5 
   ```
+## password-args
+* This folder has a sample python function 
+  * to generate a random password
+    * password.py 
+  * to save it in a text file
+    * save.py 
+  * to view the generated password
+    * save.py
+* It also has a module which has a python function for
+  * argument parsing through CLI
+  * commands used for generation and retrieval of specific service assosciated
+    * username
+    * password
+  * To view function for above,
+    * passwdManager.py  
 
 
