@@ -37,5 +37,26 @@
     * password
   * To view function for above,
     * passwdManager.py  
+* To generate a password using cli,run below command
+  ```bash
+  python passwdManager.py generate -l 16 -s Gmail -u srikanth
+  ```
+  * generate -> subcommand
+  * Here, -l -> length
+  * -s -> service name
+  * -u -> username
+  * passwdManager.py -> module which has main function
+* After successful execution of above command, we will be able to see
+  * service name
+  * username
+  * password in a text file
+* Now, to a retrieve generated password,type as below
+  ```bash
+  python passwdManager.py retrieve -s Gmail 
+  ```
+* Upon successful execution, we will be able to see
+  * username
+  * password 
+
 
 
