@@ -7,8 +7,16 @@ from cryptography.fernet import Fernet
 
 PASS_FILE = 'passwd.secret'
 
+def load_file():
+    """Loades existing secrets
 
-secret_dict=dict()
+    Returns:
+        dict: loaded secrets
+    """
+    with open(PASS_FILE,'r',encoding='utf16') as file:
+        return json.load(file)
+
+secret_dict=load_file()
 
 def load_key(key_file='password.key'):
     """This function will load the key
@@ -79,10 +87,6 @@ def view_pass(ser_name):
     Args:
         ser_name (string): specific service name
     """
-    global secret_dict
-    with open(PASS_FILE,'r',encoding='utf16') as file:
-        secret_dict=json.load(file)
-
     # retrieving contents from an encrypted file
     if ser_name not in secret_dict:
         raise ValueError("service you entered was incorrect")
