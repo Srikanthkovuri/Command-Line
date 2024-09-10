@@ -2,38 +2,29 @@
 and retrieving password
 """
 import os
-import json
+import yaml
 from cryptography.fernet import Fernet
 
-PASS_FILE = 'passwd.secret'
+PASS_FILE = 'passwd.encrypt'
 
-def load_file():
-    """Loades existing secrets
+secret_dict=dict()
 
-    Returns:
-        dict: loaded secrets
-    """
-    with open(PASS_FILE,'r',encoding='utf16') as file:
-        return json.load(file)
-
-secret_dict=load_file()
-
-def load_key(key_file='password.key'):
+def load_key(key_file='encrypted.key'):
     """This function will load the key
 
     Args:
-        key_file (str, optional):key file name. Defaults to 'password.key'.
+        key_file (str, optional):key file name. Defaults to 'encrypted.key'.
 
     Returns:
         String: returns key value in binary format
     """
     return open(key_file,'rb').read()
         
-def get_key(key_file='password.key'):
+def get_key(key_file='encrypted.key'):
     """This function will get the key
 
     Args:
-        key_file (str, filename): Key file name. Defaults to 'password.key'.
+        key_file (str, filename): Key file name. Defaults to 'encrypted.key'.
     """
     if not os.path.exists(key_file):
         key=Fernet.generate_key()
@@ -73,13 +64,13 @@ def save_pass(service,username,password):
         username (string): username
         password (string): password of an user
     """
-    # saving in a file with encrytion
+    # saving in a file with encrytion in yaml format
     secret_dict[service]={
         'username':encrypt(username),
         'password':encrypt(password)
     }
     with open(PASS_FILE,mode='w',encoding='utf16') as file:
-        json.dump(secret_dict,file,indent=4)
+        yaml.dump(secret_dict,file,indent=4)
 
 def view_pass(ser_name):
     """This function will show user,passwd
@@ -87,7 +78,10 @@ def view_pass(ser_name):
     Args:
         ser_name (string): specific service name
     """
-    # retrieving contents from an encrypted file
+    global secret_dict
+    with open(PASS_FILE,'r',encoding='utf16') as file:
+        secret_dict=yaml.load(file, Loader=yaml.FullLoader)
+    # retrieving contents from an encrypted yaml format file
     if ser_name not in secret_dict:
         raise ValueError("service you entered was incorrect")
     username=decrypt(secret_dict[ser_name]['username'])
