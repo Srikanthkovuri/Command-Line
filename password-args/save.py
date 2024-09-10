@@ -7,7 +7,16 @@ from cryptography.fernet import Fernet
 
 PASS_FILE = 'passwd.encrypt'
 
-secret_dict=dict()
+def load_file():
+    """Loads existing records
+
+    Returns:
+        dict:loads records in yaml format
+    """
+    with open(PASS_FILE,'r',encoding='utf16') as file:
+        return yaml.load(file, Loader=yaml.FullLoader)
+    
+secret_dict=load_file()
 
 def load_key(key_file='encrypted.key'):
     """This function will load the key
@@ -78,9 +87,6 @@ def view_pass(ser_name):
     Args:
         ser_name (string): specific service name
     """
-    global secret_dict
-    with open(PASS_FILE,'r',encoding='utf16') as file:
-        secret_dict=yaml.load(file, Loader=yaml.FullLoader)
     # retrieving contents from an encrypted yaml format file
     if ser_name not in secret_dict:
         raise ValueError("service you entered was incorrect")
