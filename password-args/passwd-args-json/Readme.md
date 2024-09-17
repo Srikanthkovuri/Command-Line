@@ -3,20 +3,20 @@
 * Generating a random password 
 * Encrypting username and password 
 * Storing it in Json file format
-* [refer](https://github.com/Srikanthkovuri/Command-Line/blob/main/password-args)
+* [refer](https://github.com/Srikanthkovuri/Command-Line/blob/main/password-args/passwd-args-json)
   * to generate a random password
-    * password.py [refer](https://github.com/Srikanthkovuri/Command-Line/blob/main/password-args/passwordjson.py)
+    * password.py [refer](https://github.com/Srikanthkovuri/Command-Line/blob/main/password-args/passwd-args-json/passwordjson.py)
   * to save it in a text file
     * save.py 
   * to view the generated password
-    * save.py [refer](https://github.com/Srikanthkovuri/Command-Line/blob/main/password-args/savejson.py)
+    * save.py [refer](https://github.com/Srikanthkovuri/Command-Line/blob/main/password-args/passwd-args-json/savejson.py)
 * It also has a module which has a python function for
   * argument parsing through CLI
   * commands used for generation and retrieval of specific service assosciated
     * username
     * password
   * To view function for above,
-    * passwdManager.py [refer](https://github.com/Srikanthkovuri/Command-Line/blob/main/password-args/passwdManagerjson.py)
+    * passwdManager.py [refer](https://github.com/Srikanthkovuri/Command-Line/blob/main/password-args/passwd-args-json/passwdManagerjson.py)
 * To generate a password using cli,run below command
   ```bash
   python passwdManager.py generate -l 16 -s Gmail -u srikanth
